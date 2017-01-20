@@ -1,0 +1,16 @@
+.game {
+    margin-top: 20px;
+}
+
+.game-board {
+    margin: auto;
+    display: block;
+}
+
+.game-info {
+    color: white;
+}
+
+.game-info ol {
+    margin: 0;
+}
