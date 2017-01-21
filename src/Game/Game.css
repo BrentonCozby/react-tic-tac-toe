@@ -13,4 +13,16 @@
 
 .game-info ol {
     margin: 0;
+    line-height: 1.5;
+    list-style-type: none;
+    padding: 0;
+}
+
+.game-info a {
+    color: #61DAFB;
+}
+
+.status {
+    margin: 25px 0 20px;
+    color: white;
 }
