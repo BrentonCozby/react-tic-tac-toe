@@ -3,6 +3,17 @@ import Board from '../Board/Board';
 import calculateWinner from './calculate-winner';
 import './Game.css';
 
+var MoveLink = (props) => {
+    function _onClick() {
+        props.clickHandler(props.moveNum);
+    }
+    return (
+        <li>
+            <a href="#" onClick={_onClick}>{props.desc}</a>
+        </li>
+    );
+};
+
 class Game extends Component {
 
     constructor() {
@@ -16,10 +27,9 @@ class Game extends Component {
             xIsNext: true,
             moveNum: 0
         };
-        this.onSquareClick = this.onSquareClick.bind(this);
     }
 
-    onSquareClick(i) {
+    onSquareClick = (i) => {
         if(this.state.moveNum < this.state.history.length - 1) return;
         const squares = this.state.history[this.state.moveNum].squares.slice();
         if(calculateWinner(squares) || squares[i]) return;
@@ -31,7 +41,7 @@ class Game extends Component {
         });
     }
 
-    jumpTo(moveNum) {
+    jumpTo = (moveNum) => {
         this.setState({
             moveNum: moveNum,
             xIsNext: (moveNum % 2) ? false : true
@@ -49,9 +59,7 @@ class Game extends Component {
         const moves = this.state.history.map((move, moveNum) => {
             const desc = moveNum ? 'Move #' + moveNum : 'Game start';
             return (
-                <li key={moveNum}>
-                    <a href="#" onClick={() => this.jumpTo(moveNum)}>{desc}</a>
-                </li>
+                <MoveLink key={moveNum} clickHandler={this.jumpTo} moveNum={moveNum} desc={desc} />
             );
         });
 
